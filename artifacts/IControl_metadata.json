@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Sale.sol": "IControl"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Sale.sol": {
+			"keccak256": "0x87bc0597d2b2c4c86aad56933cfe6d0305855d069a28aa73de91869b5e46748b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2ecaa281284fb02d1b57ada2e59cacd8ee4fb08bd2ab4bb36cc737a38d805ebe",
+				"dweb:/ipfs/QmUJmK9amkcbYyBsyevy8ePr2c4pF5uvPVXeMKJrYpc91w"
+			]
+		}
+	},
+	"version": 1
+}

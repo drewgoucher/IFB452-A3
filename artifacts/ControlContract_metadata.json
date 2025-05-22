@@ -6,7 +6,13 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_mintAddress",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -22,22 +28,72 @@
 					{
 						"indexed": false,
 						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "qrCode",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
 						"name": "owner",
 						"type": "address"
 					}
 				],
-				"name": "Minted",
+				"name": "ProductRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "verifier",
+						"type": "address"
+					}
+				],
+				"name": "ProductVerified",
 				"type": "event"
 			},
 			{
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "operator",
+						"name": "verifier",
 						"type": "address"
 					}
 				],
-				"name": "approveOperator",
+				"name": "addVerifier",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -50,25 +106,12 @@
 						"type": "address"
 					}
 				],
-				"name": "approvedOperators",
+				"name": "authorisedVerifiers",
 				"outputs": [
 					{
 						"internalType": "bool",
 						"name": "",
 						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "controlContract",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -82,27 +125,12 @@
 						"type": "uint256"
 					}
 				],
-				"name": "getMetadata",
+				"name": "getHistory",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "address[]",
 						"name": "",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
+						"type": "address[]"
 					}
 				],
 				"stateMutability": "view",
@@ -122,124 +150,11 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "brand",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "serialNumber",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "productType",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "material",
-						"type": "string"
-					}
-				],
-				"name": "mint",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "ownerOf",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_controlContract",
-						"type": "address"
-					}
-				],
-				"name": "setControlContract",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
-				"name": "tokenCounter",
+				"name": "mintContract",
 				"outputs": [
 					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "tokenMetadata",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "brand",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "serialNumber",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "productType",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "material",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "tokenOwner",
-				"outputs": [
-					{
-						"internalType": "address",
+						"internalType": "contract ISimpleMint",
 						"name": "",
 						"type": "address"
 					}
@@ -250,22 +165,100 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "from",
-						"type": "address"
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
 					},
 					{
 						"internalType": "address",
-						"name": "to",
+						"name": "owner",
 						"type": "address"
+					}
+				],
+				"name": "onMint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "products",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenID",
+						"type": "uint256"
 					},
+					{
+						"internalType": "string",
+						"name": "qrCode",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "verified",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "currentOwner",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "qrCode",
+						"type": "string"
+					}
+				],
+				"name": "register",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
 					{
 						"internalType": "uint256",
 						"name": "tokenId",
 						"type": "uint256"
 					}
 				],
-				"name": "transferFrom",
+				"name": "verify",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -284,7 +277,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"MintContract.sol": "SimpleMint"
+			"Control.sol": "ControlContract"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -298,12 +291,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"MintContract.sol": {
-			"keccak256": "0xbaa4a080b588e3c1a661e05b0a83b0bde77f5345c4f5e919e2076a53e005534e",
+		"Control.sol": {
+			"keccak256": "0xea7160e53fb7f0ab2ae51098102f61a540f479da1007db2b79db38ce671fcc2f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e364c4d0683f6aac06a9feb3a7aeaf02d7c81a8d6a349595e2019124e5f5da03",
-				"dweb:/ipfs/Qmb5M2zzbd6ydpTryJNxCnpFP5FZhKV8xkSVtxXLtUonPQ"
+				"bzz-raw://968ea5cc1fd1ae1fde09ba418b71746af3a91b3cf24a445a0dafd62a71ea29c5",
+				"dweb:/ipfs/Qmb8sKNb6qEtRbtiG5ymJdZ5D9mAwj2GqVmZzqYshNXfhA"
 			]
 		}
 	},

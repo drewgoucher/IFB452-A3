@@ -11,6 +11,11 @@
 						"internalType": "address",
 						"name": "_nftAddress",
 						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_controlAddress",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -39,18 +44,12 @@
 					},
 					{
 						"indexed": false,
-						"internalType": "address",
-						"name": "buyer",
-						"type": "address"
-					},
-					{
-						"indexed": false,
 						"internalType": "uint256",
 						"name": "price",
 						"type": "uint256"
 					}
 				],
-				"name": "ProductTransfer",
+				"name": "ProductListed",
 				"type": "event"
 			},
 			{
@@ -71,7 +70,13 @@
 					{
 						"indexed": false,
 						"internalType": "address",
-						"name": "seller",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "to",
 						"type": "address"
 					},
 					{
@@ -81,15 +86,15 @@
 						"type": "uint256"
 					}
 				],
-				"name": "SaleListed",
+				"name": "ProductTransferred",
 				"type": "event"
 			},
 			{
 				"inputs": [],
-				"name": "nft",
+				"name": "control",
 				"outputs": [
 					{
-						"internalType": "contract IProductNFT",
+						"internalType": "contract IControl",
 						"name": "",
 						"type": "address"
 					}
@@ -99,10 +104,23 @@
 			},
 			{
 				"inputs": [],
-				"name": "nftAddress",
+				"name": "manufacturer",
 				"outputs": [
 					{
 						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "nft",
+				"outputs": [
+					{
+						"internalType": "contract ISimpleMint",
 						"name": "",
 						"type": "address"
 					}
@@ -119,7 +137,7 @@
 					},
 					{
 						"internalType": "string",
-						"name": "_productName",
+						"name": "productName",
 						"type": "string"
 					},
 					{
@@ -149,11 +167,6 @@
 						"type": "string"
 					},
 					{
-						"internalType": "address",
-						"name": "seller",
-						"type": "address"
-					},
-					{
 						"internalType": "uint256",
 						"name": "price",
 						"type": "uint256"
@@ -162,6 +175,11 @@
 						"internalType": "bool",
 						"name": "isActive",
 						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "seller",
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -214,11 +232,11 @@
 	},
 	"sources": {
 		"Sale.sol": {
-			"keccak256": "0xfa60e8ba11c491523959c94da6494964dde940600b42bee36523a5b6ff7ef609",
+			"keccak256": "0x87bc0597d2b2c4c86aad56933cfe6d0305855d069a28aa73de91869b5e46748b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0e63c6b76f8b153c50f720adbdcb565b2ae15ade161534a3fbf0af1570900e1d",
-				"dweb:/ipfs/QmPBbAKMoKrdfeHUbmQtKthSnroHkEgD8Lrecfxz4ckpNw"
+				"bzz-raw://2ecaa281284fb02d1b57ada2e59cacd8ee4fb08bd2ab4bb36cc737a38d805ebe",
+				"dweb:/ipfs/QmUJmK9amkcbYyBsyevy8ePr2c4pF5uvPVXeMKJrYpc91w"
 			]
 		}
 	},

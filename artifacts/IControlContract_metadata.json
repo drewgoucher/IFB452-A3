@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "onMint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"MintContract.sol": "IControlContract"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"MintContract.sol": {
+			"keccak256": "0xbaa4a080b588e3c1a661e05b0a83b0bde77f5345c4f5e919e2076a53e005534e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e364c4d0683f6aac06a9feb3a7aeaf02d7c81a8d6a349595e2019124e5f5da03",
+				"dweb:/ipfs/Qmb5M2zzbd6ydpTryJNxCnpFP5FZhKV8xkSVtxXLtUonPQ"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,9 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+interface IControlContract {
+    function onMint(uint256 tokenId, address owner) external;
+}
+
 contract SimpleMint {
     uint256 public tokenCounter;
     address public manufacturer;
+    address public controlContract;
 
     struct ProductMetadata {
         string brand;
@@ -14,12 +19,25 @@ contract SimpleMint {
 
     mapping(uint256 => ProductMetadata) public tokenMetadata;
     mapping(uint256 => address) public tokenOwner;
+    mapping(address => bool) public approvedOperators;
 
     event Minted(uint256 tokenId, address owner);
 
     constructor() {
         manufacturer = msg.sender;
         tokenCounter = 0;
+    }
+
+    // Setter to set control contract address once
+    function setControlContract(address _controlContract) public {
+        require(msg.sender == manufacturer, "Only manufacturer can set");
+        require(controlContract == address(0), "Control contract already set");
+        controlContract = _controlContract;
+    }
+
+    function approveOperator(address operator) public {
+        require(msg.sender == manufacturer, "Only manufacturer can approve");
+        approvedOperators[operator] = true;
     }
 
     function mint(
@@ -30,12 +48,27 @@ contract SimpleMint {
     ) public {
         require(msg.sender == manufacturer, "Only manufacturer can mint");
 
-        uint256 tokenId = tokenCounter + 1;
+        tokenCounter++;
+        uint256 tokenId = tokenCounter;
+
         tokenMetadata[tokenId] = ProductMetadata(brand, serialNumber, productType, material);
         tokenOwner[tokenId] = msg.sender;
 
         emit Minted(tokenId, msg.sender);
+
+        // Only call onMint if controlContract is set
+        if (controlContract != address(0)) {
+            IControlContract(controlContract).onMint(tokenId, msg.sender);
+        }
+
         tokenCounter++;
+    }
+
+    function transferFrom(address from, address to, uint256 tokenId) public {
+        require(tokenOwner[tokenId] == from, "Not owner");
+        require(msg.sender == from || approvedOperators[msg.sender], "Not authorised");
+
+        tokenOwner[tokenId] = to;
     }
 
     function ownerOf(uint256 tokenId) public view returns (address) {
@@ -44,8 +77,8 @@ contract SimpleMint {
     }
 
     function getMetadata(uint256 tokenId) public view returns (string memory, string memory, string memory, string memory) {
-    ProductMetadata memory data = tokenMetadata[tokenId];
-    return (data.brand, data.serialNumber, data.productType, data.material);
-}
+        ProductMetadata memory data = tokenMetadata[tokenId];
+        return (data.brand, data.serialNumber, data.productType, data.material);
+    }
 
 }
