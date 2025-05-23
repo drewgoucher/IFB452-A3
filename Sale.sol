@@ -14,7 +14,7 @@ interface IControl {
 contract SaleContract {
     address public manufacturer;
     ISimpleMint public nft;
-    IControl public control;       // Reference to the external NFT contract
+    IControl public control;      
 
     // Struct to define a sale
     struct Sale {

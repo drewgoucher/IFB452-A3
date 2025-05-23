@@ -37,7 +37,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"MintContract.sol": "IControlContract"
+			"Mint.sol": "IControlContract"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -51,12 +51,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"MintContract.sol": {
-			"keccak256": "0xedefc5aed508a22d135f56c23a85df723a3bab7f2b4fe3631a78af556f9bd231",
+		"Mint.sol": {
+			"keccak256": "0xe3527c1617a539014634d79f54266b4790e3bdb5a5bf09f75bef1d0700675c5e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9b9034b329df03dc53938e7e36dd470900390399925aa78df38aa5b911b3e0a4",
-				"dweb:/ipfs/QmdMzuDJnpTYrCQ3aYFYXdt748Kc1gnh1aiGSrrSHpUX7T"
+				"bzz-raw://8d0c3ba6c14c93dc9054fb0bebc8e89ab05b2b453c818944871c6c8e73979c73",
+				"dweb:/ipfs/QmZ1cCBnpmjUx7ci6YzRQBXwm4ahmknyEtds286mkcVkN2"
 			]
 		}
 	},

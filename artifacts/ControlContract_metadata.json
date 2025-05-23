@@ -166,24 +166,6 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					}
-				],
-				"name": "onMint",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
 					}
@@ -318,11 +300,11 @@
 	},
 	"sources": {
 		"Control.sol": {
-			"keccak256": "0xa85521e2f6566fe54b48c96e198b9ea0ac6bb489079f2a95f1937772ce25400b",
+			"keccak256": "0x950325ba73a627eab8ef4cfaf630981a1baa04477caa04199547313a478a32c6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f8b6bc86aa7206698e874c9e0a68128c26d327b74ecfc955db712483e2f27071",
-				"dweb:/ipfs/QmcPhyYG2J3KWbSEhYmwpKD9rHz7R5ZBvBKHzWBwfUB32L"
+				"bzz-raw://36e3f2013ef4ecd7861a4318b4c27f14e4468f41231f394666d4414312da0f16",
+				"dweb:/ipfs/QmYZcaZTyY1pLxT1GPsd8MJUsYx8phrGK4bdnVn5rrQYHb"
 			]
 		}
 	},

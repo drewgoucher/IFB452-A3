@@ -1,60 +1,79 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+interface IControlContract {
+    function onMint(uint256 tokenId, address owner) external;
+}
 
-contract ProductNFT is ERC721, Ownable {
-    // Struct to store product metadata
-    struct Product {
-        string brand;           // Brand of the luxury good
-        string serialNumber;    // Unique serial number
-        string materialDetails; // Material details for traceability
+contract SimpleMint {
+    uint256 public tokenCounter;
+    address public manufacturer;
+    address public controlContract;
+    address public saleContract;
+
+    struct ProductMetadata {
+        string brand;
+        string serialNumber;
+        string productType;
+        string material;
     }
 
-    // Mapping from token ID to product metadata
-    mapping(uint256 => Product) public products;
+    mapping(uint256 => ProductMetadata) public tokenMetadata;
+    mapping(uint256 => address) public tokenOwner;
+    mapping(address => bool) public approvedOperators;
 
-    // Counter for generating unique token IDs
-    uint256 private _tokenIdCounter;
+    event Minted(uint256 tokenId, address owner);
 
-    // Event triggered when a new NFT is minted
-    event ProductMinted(uint256 tokenId, string brand, string serialNumber, string materialDetails, address manufacturer);
-
-    // Constructor to initialize the ERC721 token with name and symbol
-    constructor() ERC721("LuxuryProductNFT", "LPNFT") Ownable(msg.sender) {
-        _tokenIdCounter = 1; // Start token IDs from 1
+    constructor() {
+        manufacturer = msg.sender;
+        tokenCounter = 0;
     }
 
-    // Function to mint a new NFT, restricted to the contract owner (manufacturer)
+    // Setter to set control contract address once
+    function setControlContract(address _controlContract) public {
+        require(msg.sender == manufacturer, "Only manufacturer can set");
+        require(controlContract == address(0), "Control contract already set");
+        controlContract = _controlContract;
+    }
+
+    function setSaleContract(address _saleContract) public {
+        require(msg.sender == manufacturer, "Only manufacturer can set");
+        require(saleContract == address(0), "Sale contract already set");
+        saleContract = _saleContract;
+    }
+
     function mint(
-        address to,
         string memory brand,
         string memory serialNumber,
-        string memory materialDetails
-    ) public onlyOwner returns (uint256) {
-        require(bytes(brand).length > 0, "Brand cannot be empty");
-        require(bytes(serialNumber).length > 0, "Serial number cannot be empty");
-        require(bytes(materialDetails).length > 0, "Material details cannot be empty");
+        string memory productType,
+        string memory material
+    ) public {
+        require(msg.sender == manufacturer, "Only manufacturer can mint");
 
-        uint256 tokenId = _tokenIdCounter;
-        _tokenIdCounter += 1;
+        tokenCounter++;
+        uint256 tokenId = tokenCounter;
 
-        // Mint the NFT to the specified address
-        _mint(to, tokenId);
+        tokenMetadata[tokenId] = ProductMetadata(brand, serialNumber, productType, material);
+        tokenOwner[tokenId] = msg.sender;
 
-        // Store product metadata
-        products[tokenId] = Product(brand, serialNumber, materialDetails);
-
-        emit ProductMinted(tokenId, brand, serialNumber, materialDetails, to);
-
-        return tokenId;
+        emit Minted(tokenId, msg.sender);
     }
 
-    // Function to retrieve product metadata for a given token ID
-    function getProduct(uint256 tokenId) public view returns (string memory brand, string memory serialNumber, string memory materialDetails) {
-        require(_ownerOf(tokenId) != address(0), "Token does not exist");
-        Product memory product = products[tokenId];
-        return (product.brand, product.serialNumber, product.materialDetails);
+    function transferFrom(address from, address to, uint256 tokenId) external {
+        require(msg.sender == saleContract, "Only SaleContract can transfer");
+        require(tokenOwner[tokenId] == from, "Not the token owner");
+
+        tokenOwner[tokenId] = to;
     }
+
+    function ownerOf(uint256 tokenId) public view returns (address) {
+        require(tokenId > 0 && tokenId <= tokenCounter, "Token does not exist");
+        return tokenOwner[tokenId];
+    }
+
+    function getMetadata(uint256 tokenId) public view returns (string memory, string memory, string memory, string memory) {
+        ProductMetadata memory data = tokenMetadata[tokenId];
+        return (data.brand, data.serialNumber, data.productType, data.material);
+    }
+
 }

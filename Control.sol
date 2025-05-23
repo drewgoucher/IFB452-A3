@@ -46,25 +46,7 @@ contract ControlContract {
     }
 
     function setSaleContract(address _saleContract) external onlyManufacturer {
-    saleContract = _saleContract;
-    }
-
-    // Called by SimpleMint when a new token is minted
-    function onMint(uint256 tokenId, address owner) external {
-        require(msg.sender == address(mintContract), "Only mint contract can call");
-        require(products[tokenId].tokenID == 0, "Already registered");
-
-        // Store the product
-        products[tokenId] = Product({
-            tokenID: tokenId,
-            qrCode: "",
-            verified: false,
-            currentOwner: owner,
-            history: new address[](1)
-        });
-        products[tokenId].history[0] = owner;
-
-        emit ProductRegistered(tokenId, "", owner);
+        saleContract = _saleContract;
     }
 
     function register(uint256 tokenId, string memory qrCode) public onlyManufacturer {
@@ -97,12 +79,14 @@ contract ControlContract {
     }
 
     function transferOwnership(uint256 tokenId, address newOwner) external onlySaleContract {
-        require(products[tokenId].currentOwner != msg.sender, "Not current owner");
+        require(products[tokenId].tokenID != 0, "Product not registered");
+
+        address oldOwner = products[tokenId].currentOwner;
 
         products[tokenId].currentOwner = newOwner;
         products[tokenId].history.push(newOwner);
 
-        emit OwnershipTransferred(tokenId, msg.sender, newOwner);
+        emit OwnershipTransferred(tokenId, oldOwner, newOwner);
     }
 
     function addVerifier(address verifier) public onlyManufacturer {
