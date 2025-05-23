@@ -8,6 +8,7 @@ interface ISimpleMint {
 contract ControlContract {
     ISimpleMint public mintContract;
     address public manufacturer;
+    address public saleContract;
 
     struct Product {
         uint256 tokenID;
@@ -34,9 +35,18 @@ contract ControlContract {
         _;
     }
 
+    modifier onlySaleContract() {
+    require(msg.sender == saleContract, "Only SaleContract can call this");
+    _;
+    }
+
     constructor(address _mintAddress) {
         manufacturer = msg.sender;
         mintContract = ISimpleMint(_mintAddress);
+    }
+
+    function setSaleContract(address _saleContract) external onlyManufacturer {
+    saleContract = _saleContract;
     }
 
     // Called by SimpleMint when a new token is minted
@@ -86,8 +96,8 @@ contract ControlContract {
         return products[tokenId].history;
     }
 
-    function transferOwnership(uint256 tokenId, address newOwner) public {
-        require(products[tokenId].currentOwner == msg.sender, "Not current owner");
+    function transferOwnership(uint256 tokenId, address newOwner) external onlySaleContract {
+        require(products[tokenId].currentOwner != msg.sender, "Not current owner");
 
         products[tokenId].currentOwner = newOwner;
         products[tokenId].history.push(newOwner);

@@ -21,7 +21,7 @@ contract SaleContract {
         string productName;
         uint256 price;
         bool isActive;
-        address seller;         // Indicates if the listing is active
+        address seller;         
     }
 
     // Mapping to store product sale information based on sale ID

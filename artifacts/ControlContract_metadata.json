@@ -233,6 +233,32 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "saleContract",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_saleContract",
+						"type": "address"
+					}
+				],
+				"name": "setSaleContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -292,11 +318,11 @@
 	},
 	"sources": {
 		"Control.sol": {
-			"keccak256": "0xea7160e53fb7f0ab2ae51098102f61a540f479da1007db2b79db38ce671fcc2f",
+			"keccak256": "0xa85521e2f6566fe54b48c96e198b9ea0ac6bb489079f2a95f1937772ce25400b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://968ea5cc1fd1ae1fde09ba418b71746af3a91b3cf24a445a0dafd62a71ea29c5",
-				"dweb:/ipfs/Qmb8sKNb6qEtRbtiG5ymJdZ5D9mAwj2GqVmZzqYshNXfhA"
+				"bzz-raw://f8b6bc86aa7206698e874c9e0a68128c26d327b74ecfc955db712483e2f27071",
+				"dweb:/ipfs/QmcPhyYG2J3KWbSEhYmwpKD9rHz7R5ZBvBKHzWBwfUB32L"
 			]
 		}
 	},

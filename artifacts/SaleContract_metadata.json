@@ -232,11 +232,11 @@
 	},
 	"sources": {
 		"Sale.sol": {
-			"keccak256": "0x87bc0597d2b2c4c86aad56933cfe6d0305855d069a28aa73de91869b5e46748b",
+			"keccak256": "0xcf8f0bc4493e2def1dd43c0228722a6a55d3bdbe689e824afe88a13ecac7d900",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2ecaa281284fb02d1b57ada2e59cacd8ee4fb08bd2ab4bb36cc737a38d805ebe",
-				"dweb:/ipfs/QmUJmK9amkcbYyBsyevy8ePr2c4pF5uvPVXeMKJrYpc91w"
+				"bzz-raw://66a52abd3c01fa8ef305cb39b080e33e0097b0cc6abcdc1667f6f3d1ef9596dc",
+				"dweb:/ipfs/QmbKy2PUyE63P7ZbrQkRLYYwvohQH3baTJUmKvgonQrzwV"
 			]
 		}
 	},
