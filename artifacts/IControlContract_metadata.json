@@ -52,11 +52,11 @@
 	},
 	"sources": {
 		"MintContract.sol": {
-			"keccak256": "0x51cb546c4b6042f39f26f0acbc09fe07621c982e836026c2ad5858595e326006",
+			"keccak256": "0xedefc5aed508a22d135f56c23a85df723a3bab7f2b4fe3631a78af556f9bd231",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ef65222b75c4138391d1061eae5445483f1c418906c8b6d44f7efbe243c948a3",
-				"dweb:/ipfs/QmUr43ZMrfNeC7vSWbTK6rXdLhHmZ5qC8XGB5j6KW3jmFw"
+				"bzz-raw://9b9034b329df03dc53938e7e36dd470900390399925aa78df38aa5b911b3e0a4",
+				"dweb:/ipfs/QmdMzuDJnpTYrCQ3aYFYXdt748Kc1gnh1aiGSrrSHpUX7T"
 			]
 		}
 	},
