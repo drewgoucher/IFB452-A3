@@ -13,7 +13,7 @@ interface IControl {
 
 contract SaleContract {
     address public manufacturer;
-    ISimpleMint public nft;
+    ISimpleMint public mint;
     IControl public control;      
 
     // Struct to define a sale
@@ -36,14 +36,14 @@ contract SaleContract {
         _;
     }
 
-    constructor(address _nftAddress, address _controlAddress) {
+    constructor(address _mintAddress, address _controlAddress) {
         manufacturer = msg.sender;
-        nft = ISimpleMint(_nftAddress);
+        mint = ISimpleMint(_mintAddress);
         control = IControl(_controlAddress);
     }
 
     function sale(uint256 tokenId, string memory productName, uint256 price) public {
-        require(nft.ownerOf(tokenId) == msg.sender, "Not owner");
+        require(mint.ownerOf(tokenId) == msg.sender, "Not owner");
         require(price > 0, "Invalid price");
 
         sales[tokenId] = Sale(productName, price, true, msg.sender);
@@ -60,7 +60,7 @@ contract SaleContract {
         require(buyer != address(0), "Invalid buyer");
 
         // Transfer the NFT from seller to buyer
-        nft.transferFrom(msg.sender, buyer, tokenId);
+        mint.transferFrom(msg.sender, buyer, tokenId);
         control.transferOwnership(tokenId, buyer);
 
         // Mark the listing as inactive

@@ -76,11 +76,11 @@
 	},
 	"sources": {
 		"Sale.sol": {
-			"keccak256": "0x6c8d02a44adac4790f9a900175046fa5b182202f30ff85c3effc4d4918432c55",
+			"keccak256": "0x881efe73a18be3e2964c95845df3dc267081327a67e641f7cfd7cf1015232f44",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://30f35549a4ce2b69723566e833b3113e965cc355bfee249afd834e52a8b2ccaf",
-				"dweb:/ipfs/QmedyJ7QroskHcTctj3pZhHxvJtcgFGLvKeGygqmoYHBNa"
+				"bzz-raw://35aab1c42c42a1548fd1a42e18772461ea64a39ee5045fc316e7bc082f030edb",
+				"dweb:/ipfs/QmRp79CkQajXakTk93RVk3Eoh1sQzEp7xpQVtpHSEpn2rr"
 			]
 		}
 	},

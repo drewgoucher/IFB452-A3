@@ -20,7 +20,6 @@ contract SimpleMint {
 
     mapping(uint256 => ProductMetadata) public tokenMetadata;
     mapping(uint256 => address) public tokenOwner;
-    mapping(address => bool) public approvedOperators;
 
     event Minted(uint256 tokenId, address owner);
 
