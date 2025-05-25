@@ -52,7 +52,7 @@ contract SaleContract {
     }
 
     // Function to transfer the product to a buyer and finalise the sale
-    function transfer(uint256 tokenId, address buyer) public onlySeller(tokenId) {
+    function saleTransfer(uint256 tokenId, address buyer) public onlySeller(tokenId) {
         Sale storage s = sales[tokenId];
 
         // Ensure the product is actively listed for sale
@@ -68,4 +68,16 @@ contract SaleContract {
 
         emit ProductTransferred(tokenId, s.productName, msg.sender, buyer, s.price);
     }
+
+    function directTransfer(uint256 tokenId, address recipient) public {
+        require(mint.ownerOf(tokenId) == msg.sender, "Caller is not the owner");
+
+        string memory productName = sales[tokenId].productName;
+
+        // Transfer the NFT
+        mint.transferFrom(msg.sender, recipient, tokenId);
+        control.transferOwnership(tokenId, recipient);
+
+        emit ProductTransferred(tokenId, productName, msg.sender, recipient, 0); // price is 0 for direct transfers
+    } 
 }

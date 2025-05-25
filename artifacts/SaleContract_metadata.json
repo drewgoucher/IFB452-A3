@@ -103,6 +103,24 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "recipient",
+						"type": "address"
+					}
+				],
+				"name": "directTransfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "manufacturer",
 				"outputs": [
@@ -155,6 +173,24 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					}
+				],
+				"name": "saleTransfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
 					}
@@ -183,24 +219,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "buyer",
-						"type": "address"
-					}
-				],
-				"name": "transfer",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -232,11 +250,11 @@
 	},
 	"sources": {
 		"Sale.sol": {
-			"keccak256": "0x881efe73a18be3e2964c95845df3dc267081327a67e641f7cfd7cf1015232f44",
+			"keccak256": "0x4afd5b3d62749fa4461b25aeafa083142d74656b6b62763178e8e184d07f422b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://35aab1c42c42a1548fd1a42e18772461ea64a39ee5045fc316e7bc082f030edb",
-				"dweb:/ipfs/QmRp79CkQajXakTk93RVk3Eoh1sQzEp7xpQVtpHSEpn2rr"
+				"bzz-raw://6161239da5224bb24469e38e9551aa16132b5bc46b8c994ab8b27057432a2d53",
+				"dweb:/ipfs/QmYCMZjwqMtDMX1UTqQiKmenc1zLhVhu8iFZrG6sRcva1r"
 			]
 		}
 	},
