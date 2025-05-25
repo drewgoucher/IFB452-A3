@@ -74,5 +74,4 @@ contract SimpleMint {
         ProductMetadata memory data = tokenMetadata[tokenId];
         return (data.brand, data.serialNumber, data.productType, data.material);
     }
-
 }

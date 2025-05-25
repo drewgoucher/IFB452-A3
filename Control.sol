@@ -21,6 +21,8 @@ contract ControlContract {
     mapping(uint256 => Product) public products;
     mapping(address => bool) public authorisedVerifiers;
 
+    uint256[] public tokenIds;
+
     event ProductRegistered(uint256 tokenId, string qrCode, address owner);
     event ProductVerified(uint256 tokenId, address verifier);
     event OwnershipTransferred(uint256 tokenId, address from, address to);
@@ -63,6 +65,8 @@ contract ControlContract {
         });
         products[tokenId].history[0] = currentOwner;
 
+        tokenIds.push(tokenId); 
+
         emit ProductRegistered(tokenId, qrCode, currentOwner);
     }
 
@@ -91,5 +95,25 @@ contract ControlContract {
 
     function addVerifier(address verifier) public onlyManufacturer {
         authorisedVerifiers[verifier] = true;
+    }
+
+    function getOwnedTokenIds(address owner) external view returns (uint256[] memory) {
+        uint256 count = 0;
+        for (uint256 i = 0; i < tokenIds.length; i++) {
+            if (products[tokenIds[i]].currentOwner == owner) {
+                count++;
+            }
+        }
+
+        uint256[] memory result = new uint256[](count);
+        uint256 index = 0;
+        for (uint256 i = 0; i < tokenIds.length; i++) {
+            if (products[tokenIds[i]].currentOwner == owner) {
+                result[index] = tokenIds[i];
+                index++;
+            }
+        }
+
+        return result;
     }
 }
