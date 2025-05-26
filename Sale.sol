@@ -1,20 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// Minimal interface to interact with external Mint (NFT) contract
+// Interface to interact with external Mint contract
 interface ISimpleMint {
     function ownerOf(uint256 tokenId) external view returns (address);
     function transferFrom(address from, address to, uint256 tokenId) external;
 }
 
+// Interface to interact with external control contract
 interface IControl {
     function transferOwnership(uint256 tokenId, address newOwner) external;
 }
 
+// Sale contract handles product listings and sales of NFTs
 contract SaleContract {
-    address public manufacturer;
-    ISimpleMint public mint;
-    IControl public control;      
+    address public manufacturer;    // Manufaturer address
+    ISimpleMint public mint;        // Reference to Mint contract
+    IControl public control;        // Reference to Control contract
 
     // Struct to define a sale
     struct Sale {
@@ -24,9 +26,10 @@ contract SaleContract {
         address seller;         
     }
 
-    // Mapping to store product sale information based on sale ID
+    // Mapping from token ID to sale info
     mapping(uint256 => Sale) public sales;
 
+    // Events
     event ProductListed(uint256 tokenId, string productName, address seller, uint256 price);
     event ProductTransferred(uint256 tokenId, string productName, address from, address to, uint256 price);
 
@@ -36,12 +39,14 @@ contract SaleContract {
         _;
     }
 
+    // Sets up the mint and control contracts and stores the manufacturer's address
     constructor(address _mintAddress, address _controlAddress) {
         manufacturer = msg.sender;
         mint = ISimpleMint(_mintAddress);
         control = IControl(_controlAddress);
     }
 
+    // Function to list a token for sale
     function sale(uint256 tokenId, string memory productName, uint256 price) public {
         require(mint.ownerOf(tokenId) == msg.sender, "Not owner");
         require(price > 0, "Invalid price");
@@ -51,7 +56,7 @@ contract SaleContract {
         emit ProductListed(tokenId, productName, msg.sender, price);
     }
 
-    // Function to transfer the product to a buyer and finalise the sale
+    // Function to transfer the product to a buyer and finalise (deactivate) the sale
     function saleTransfer(uint256 tokenId, address buyer) public onlySeller(tokenId) {
         Sale storage s = sales[tokenId];
 
@@ -69,6 +74,7 @@ contract SaleContract {
         emit ProductTransferred(tokenId, s.productName, msg.sender, buyer, s.price);
     }
 
+    // Directly tranfer token to a recipient without requiring it to be listed for sale
     function directTransfer(uint256 tokenId, address recipient) public {
         require(mint.ownerOf(tokenId) == msg.sender, "Caller is not the owner");
 
