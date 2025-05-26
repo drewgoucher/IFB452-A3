@@ -27,9 +27,10 @@ interface Token {
   forSale: boolean;
 }
 
-function TokenCard({ token }: { token: Token }) {
+export function TokenCard({ token }: { token: Token }) {
   const [imgLoading, setImgLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  console.log("token : ", token);
 
   return (
     <div className="border rounded-lg p-4 shadow hover:shadow-md transition text-sm">

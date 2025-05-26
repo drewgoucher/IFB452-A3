@@ -17,6 +17,7 @@ export default function Home() {
           <div className="flex items-center gap-x-2">
             <Gem className="w-7 h-7 text-zinc-900" />
             <h1 className="text-[1.7rem] font-semibold  tracking-tight ">luxus</h1>
+            <p className="text-lg font-normal tracking-tight ">v1.2</p>
           </div>
           <ConnectWalletButton />
         </div>

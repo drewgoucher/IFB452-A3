@@ -13,6 +13,8 @@ import { uploadQRCodeToIPFS } from "@/app/manufacturer/mint/upload";
 import { createQRCodeInstance } from "@/app/manufacturer/mint/generator";
 import { ethers } from "ethers";
 
+export const randomString = "-7c7cb38581816ea79587d1481aca067958f0eb3e643c78e881fa428d9a8aed7a";
+
 interface ProductForm {
   brand: string;
   serialNumber: string;
@@ -81,14 +83,12 @@ export default function Mint(): JSX.Element {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
 
-      const { tokenId, txHash } = await mintProduct(form, signer, setStatus);
-
-      const data = `https://sepolia.etherscan.io/tx/${txHash}`;
+      const { tokenId } = await mintProduct(form, signer, setStatus);
 
       setStatus("Generating QR code...");
 
       if (ref.current) {
-        const qrCode = createQRCodeInstance(data);
+        const qrCode = createQRCodeInstance(tokenId.toString() + randomString);
         qrCode.append(ref.current);
         qrCodeRef.current = qrCode;
       }
